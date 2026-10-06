@@ -3,12 +3,12 @@
   "geral": {
    "nomeLoja": "LaborLoja",
    "slogan": "Soluções e Inovações",
-   "logo": "uploads/thegem-logos/logo_39b22a9548d440900cd0ffaf9293a2f6_1x.png",
-   "logoRodape": "uploads/thegem-logos/logo_d07085adda28b8be2b2e7e7fbb1d4069_1x.png",
+   "logo": "https://laborloja.com.br/wp-content/uploads/thegem-logos/logo_39b22a9548d440900cd0ffaf9293a2f6_1x.png",
+   "logoRodape": "https://laborloja.com.br/wp-content/uploads/thegem-logos/logo_d07085adda28b8be2b2e7e7fbb1d4069_1x.png",
    "corPrincipal": "#0000ff",
    "corTexto": "#000000",
    "corFundoCinza": "#dfe5e8",
-   "corRodape": "#0d1530",
+   "corRodape": "#000000",
    "fonteTitulos": "Rubik",
    "fonteTexto": "Source Sans Pro",
    "avisoTopo": "Atendimento especializado em diagnósticos",
@@ -66,8 +66,8 @@
     "botaoTexto": "Entre em contato",
     "botaoLink": "whatsapp",
     "imagem": "",
-    "imagemFundo": "uploads/2023/10/banner_11.jpg",
-    "bannerLateral": "uploads/2023/12/f-igg-igm-jpg.jpg",
+    "imagemFundo": "https://laborloja.com.br/wp-content/uploads/2023/10/banner_11.jpg",
+    "bannerLateral": "https://laborloja.com.br/wp-content/uploads/2023/12/f-igg-igm-jpg.jpg",
     "bannerLateralLink": "produto.html?p=eco-f-covid-19-igg-igm"
    },
    "tituloCategorias": "ECO Diagnóstica Brasil",
@@ -77,14 +77,14 @@
      "texto": "Primeiro teste de saliva aprovado pela anvisa.",
      "botaoTexto": "Obter Cotação",
      "botaoLink": "whatsapp",
-     "imagem": "uploads/2024/01/auto-teste1.jpg"
+     "imagem": "https://laborloja.com.br/wp-content/uploads/2024/01/auto-teste1.jpg"
     },
     {
      "titulo": "TESTES IMUNOENSAIO",
      "texto": "Conheça nosso portfólio de produtos LaborLoja",
      "botaoTexto": "Clique Aqui",
      "botaoLink": "produtos.html",
-     "imagem": "uploads/2024/01/auto-teste-arbovirose.jpg"
+     "imagem": "https://laborloja.com.br/wp-content/uploads/2024/01/auto-teste-arbovirose.jpg"
     }
    ],
    "tituloDestaques": "Soluções em Diagnóstico Veterinário",
@@ -97,7 +97,7 @@
      "texto": "Doenças respiratórias, Adenovírus, Covid, Zika, Influenza e muito mais...",
      "botaoTexto": "Conhecer nossos soluções",
      "botaoLink": "produtos.html?cat=point-of-care",
-     "imagem": "uploads/2023/12/diagnopstico-humano.jpg",
+     "imagem": "https://laborloja.com.br/wp-content/uploads/2023/12/diagnopstico-humano.jpg",
      "botaoClaro": false
     },
     {
@@ -105,7 +105,7 @@
      "texto": "O melhor para o conforto e saúde do Pet dos seus clientes.",
      "botaoTexto": "Saiba mais",
      "botaoLink": "produtos.html?cat=diagnostico-veterinario",
-     "imagem": "uploads/2023/12/veterinario-equipamento.jpg",
+     "imagem": "https://laborloja.com.br/wp-content/uploads/2023/12/veterinario-equipamento.jpg",
      "botaoClaro": true
     }
    ],
@@ -167,22 +167,22 @@
    "parceiros": [
     {
      "nome": "LaborLoja",
-     "imagem": "uploads/2023/12/loborloja-cc.png",
+     "imagem": "https://laborloja.com.br/wp-content/uploads/2023/12/loborloja-cc.png",
      "link": ""
     },
     {
      "nome": "ECO Diagnóstica",
-     "imagem": "uploads/2023/12/eco-cc.png",
+     "imagem": "https://laborloja.com.br/wp-content/uploads/2023/12/eco-cc.png",
      "link": ""
     },
     {
      "nome": "SD Biosensor",
-     "imagem": "uploads/2023/12/sd-biosensor-cc.png",
+     "imagem": "https://laborloja.com.br/wp-content/uploads/2023/12/sd-biosensor-cc.png",
      "link": ""
     },
     {
      "nome": "Celer",
-     "imagem": "uploads/2023/12/celer-vet.png",
+     "imagem": "https://laborloja.com.br/wp-content/uploads/2023/12/celer-vet.png",
      "link": ""
     }
    ]
@@ -234,10 +234,10 @@
    ],
    "copyright": "Copyright © LaborLoja. Todos os direitos reservados.",
    "pagamentos": [
-    "uploads/2022/12/1.png",
-    "uploads/2022/12/2.png",
-    "uploads/2022/12/3.png",
-    "uploads/2022/12/4.png"
+    "https://laborloja.com.br/wp-content/uploads/2022/12/1.png",
+    "https://laborloja.com.br/wp-content/uploads/2022/12/2.png",
+    "https://laborloja.com.br/wp-content/uploads/2022/12/3.png",
+    "https://laborloja.com.br/wp-content/uploads/2022/12/4.png"
    ]
   },
   "megaMenu": {
@@ -292,7 +292,7 @@
     }
    ],
    "banner": {
-    "imagem": "uploads/2023/01/sale-134.jpg",
+    "imagem": "https://laborloja.com.br/wp-content/uploads/2023/01/sale-134.jpg",
     "linha1": "Converse com nossa",
     "destaque": "ESPECIALISTA",
     "linha2": "EQUIPE PRONTA",
@@ -337,7 +337,7 @@
    "id": "point-of-care",
    "nome": "Point of Care",
    "pai": "",
-   "imagem": "uploads/2023/12/point-care-eco.jpg",
+   "imagem": "https://laborloja.com.br/wp-content/uploads/2023/12/point-care-eco.jpg",
    "ordem": 0,
    "destaque": true
   },
@@ -345,7 +345,7 @@
    "id": "diagnosticos-molecular",
    "nome": "Diagnóstico Molecular",
    "pai": "",
-   "imagem": "uploads/2023/12/biologia-molecular-eco.jpg",
+   "imagem": "https://laborloja.com.br/wp-content/uploads/2023/12/biologia-molecular-eco.jpg",
    "ordem": 1,
    "destaque": true
   },
@@ -353,7 +353,7 @@
    "id": "animais-pequenos",
    "nome": "Animais de Companhia",
    "pai": "",
-   "imagem": "uploads/2023/12/veterinaria-vet.jpg",
+   "imagem": "https://laborloja.com.br/wp-content/uploads/2023/12/veterinaria-vet.jpg",
    "ordem": 2,
    "destaque": true
   },
@@ -361,7 +361,7 @@
    "id": "drogas-de-abuso",
    "nome": "Drogas de Abuso",
    "pai": "",
-   "imagem": "uploads/2023/12/drogas-abuso.jpg",
+   "imagem": "https://laborloja.com.br/wp-content/uploads/2023/12/drogas-abuso.jpg",
    "ordem": 3,
    "destaque": true
   },
@@ -369,7 +369,7 @@
    "id": "animais-grande-porte",
    "nome": "Animais de Produção",
    "pai": "",
-   "imagem": "uploads/2023/12/animais-grande-porte.jpg",
+   "imagem": "https://laborloja.com.br/wp-content/uploads/2023/12/animais-grande-porte.jpg",
    "ordem": 4,
    "destaque": true
   },
@@ -377,7 +377,7 @@
    "id": "alergia-intolorencia",
    "nome": "Alergia e Intolerância",
    "pai": "",
-   "imagem": "uploads/2023/12/alergia2.jpg",
+   "imagem": "https://laborloja.com.br/wp-content/uploads/2023/12/alergia2.jpg",
    "ordem": 5,
    "destaque": true
   },
@@ -441,7 +441,7 @@
    "id": "fluorescencia",
    "nome": "Fluorescência",
    "pai": "point-of-care",
-   "imagem": "uploads/2023/12/fluorescencia.jpg",
+   "imagem": "https://laborloja.com.br/wp-content/uploads/2023/12/fluorescencia.jpg",
    "ordem": 19,
    "destaque": false
   },
@@ -478,7 +478,7 @@
     "diagnostico-veterinario"
    ],
    "imagens": [
-    "uploads/2025/02/Captura-de-tela-2025-02-24-085858.png"
+    "https://laborloja.com.br/wp-content/uploads/2025/02/Captura-de-tela-2025-02-24-085858.png"
    ],
    "resumo": "",
    "descricao": "",
@@ -498,7 +498,7 @@
     "standard-m10"
    ],
    "imagens": [
-    "uploads/2023/12/Standard-M10-HPV.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Standard-M10-HPV.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -518,7 +518,7 @@
     "standard-m10"
    ],
    "imagens": [
-    "uploads/2023/12/Standard-M10-Flu_RSV_SARS-CoV-2.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Standard-M10-Flu_RSV_SARS-CoV-2.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -538,7 +538,7 @@
     "standard-m10"
    ],
    "imagens": [
-    "uploads/2023/12/Standard-M10-DENV-1-4.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Standard-M10-DENV-1-4.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -558,7 +558,7 @@
     "standard-m10"
    ],
    "imagens": [
-    "uploads/2023/12/Standard-M10-C.difficile-1.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Standard-M10-C.difficile-1.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -578,7 +578,7 @@
     "standard-m10"
    ],
    "imagens": [
-    "uploads/2023/12/Standard-M10-Arbovirus-Panel2.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Standard-M10-Arbovirus-Panel2.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -598,7 +598,7 @@
     "standard-m10"
    ],
    "imagens": [
-    "uploads/2023/12/ECO-M-SARS-CoV-2.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/ECO-M-SARS-CoV-2.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -618,7 +618,7 @@
     "standard-m10"
    ],
    "imagens": [
-    "uploads/2023/12/Standard-M10.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Standard-M10.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -637,7 +637,7 @@
     "diagnosticos-molecular"
    ],
    "imagens": [
-    "uploads/2023/12/Analisador-Alethia.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Analisador-Alethia.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -656,7 +656,7 @@
     "diagnosticos-molecular"
    ],
    "imagens": [
-    "uploads/2023/12/Alethia-Strep-B.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Alethia-Strep-B.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -675,7 +675,7 @@
     "diagnosticos-molecular"
    ],
    "imagens": [
-    "uploads/2023/12/Alethia-Strep-A.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Alethia-Strep-A.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -694,7 +694,7 @@
     "diagnosticos-molecular"
    ],
    "imagens": [
-    "uploads/2023/12/Alethia-Pertussis.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Alethia-Pertussis.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -713,7 +713,7 @@
     "diagnosticos-molecular"
    ],
    "imagens": [
-    "uploads/2023/12/Alethia-Mycoplasma-Direct.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Alethia-Mycoplasma-Direct.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -732,7 +732,7 @@
     "diagnosticos-molecular"
    ],
    "imagens": [
-    "uploads/2023/12/Alethia-Malaria.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Alethia-Malaria.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -751,7 +751,7 @@
     "diagnosticos-molecular"
    ],
    "imagens": [
-    "uploads/2023/12/Alethia-HSV-1-2.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Alethia-HSV-1-2.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -770,7 +770,7 @@
     "diagnosticos-molecular"
    ],
    "imagens": [
-    "uploads/2023/12/Alethia-CMV-Citomegalovirus.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Alethia-CMV-Citomegalovirus.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -789,7 +789,7 @@
     "diagnosticos-molecular"
    ],
    "imagens": [
-    "uploads/2023/12/Alethia-Chlamydia.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Alethia-Chlamydia.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -809,7 +809,7 @@
     "point-of-care"
    ],
    "imagens": [
-    "uploads/2023/01/fluorescencia-full.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/01/fluorescencia-full.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -829,7 +829,7 @@
     "point-of-care"
    ],
    "imagens": [
-    "uploads/2023/01/fluorescencia-full.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/01/fluorescencia-full.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -849,7 +849,7 @@
     "point-of-care"
    ],
    "imagens": [
-    "uploads/2023/01/fluorescencia-full.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/01/fluorescencia-full.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -869,7 +869,7 @@
     "point-of-care"
    ],
    "imagens": [
-    "uploads/2023/01/fluorescencia-full.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/01/fluorescencia-full.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -887,13 +887,13 @@
     "alergia-intolorencia"
    ],
    "imagens": [
-    "uploads/2023/12/e-book-Intolerancia-Alimentar_paciente_v001.2021-15.10_compressed_page-0001.jpg",
-    "uploads/2023/12/Captura-de-tela-de-2023-12-10-14-41-43.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/e-book-Intolerancia-Alimentar_paciente_v001.2021-15.10_compressed_page-0001.jpg",
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Captura-de-tela-de-2023-12-10-14-41-43.jpg"
    ],
    "resumo": "",
    "descricao": "",
    "botao": "Baixe Nosso Folder",
-   "pdf": "uploads/2023/12/e-book-Intolerancia-Alimentar_paciente_v001.2021-15.10_compressed.pdf",
+   "pdf": "https://laborloja.com.br/wp-content/uploads/2023/12/e-book-Intolerancia-Alimentar_paciente_v001.2021-15.10_compressed.pdf",
    "preco": "Sob consulta",
    "destaque": false,
    "ativo": true,
@@ -906,13 +906,13 @@
     "alergia-intolorencia"
    ],
    "imagens": [
-    "uploads/2023/12/Folder-Allergy-ECO-Teste_page-0001.jpg",
-    "uploads/2023/12/Captura-de-tela-de-2023-12-10-14-43-17.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Allergy-ECO-Teste_page-0001.jpg",
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Captura-de-tela-de-2023-12-10-14-43-17.jpg"
    ],
    "resumo": "",
    "descricao": "",
    "botao": "Baixe Nosso Folder",
-   "pdf": "uploads/2023/12/Folder-Allergy-ECO-Teste.pdf",
+   "pdf": "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Allergy-ECO-Teste.pdf",
    "preco": "Sob consulta",
    "destaque": false,
    "ativo": true,
@@ -925,13 +925,13 @@
     "diagnostico-veterinario"
    ],
    "imagens": [
-    "uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja_page-0001.jpg",
-    "uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja_page-0028.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja_page-0001.jpg",
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja_page-0028.jpg"
    ],
    "resumo": "",
    "descricao": "",
    "botao": "Baixe Nosso Folder",
-   "pdf": "uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja.pdf",
+   "pdf": "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja.pdf",
    "preco": "Sob consulta",
    "destaque": false,
    "ativo": true,
@@ -944,13 +944,13 @@
     "diagnostico-veterinario"
    ],
    "imagens": [
-    "uploads/2023/12/Folder-Hormonios-Finecare-VET-LaborLoja_page-0001.jpg",
-    "uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja_page-0023.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Hormonios-Finecare-VET-LaborLoja_page-0001.jpg",
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja_page-0023.jpg"
    ],
    "resumo": "",
    "descricao": "",
    "botao": "Baixe Nosso Folder",
-   "pdf": "uploads/2023/12/Folder-Hormonios-Finecare-VET-LaborLoja.pdf",
+   "pdf": "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Hormonios-Finecare-VET-LaborLoja.pdf",
    "preco": "Sob consulta",
    "destaque": false,
    "ativo": true,
@@ -963,13 +963,13 @@
     "diagnostico-veterinario"
    ],
    "imagens": [
-    "uploads/2023/12/Folder-Hematologia-Celer-Vet-LaborLoja_page-0001.jpg",
-    "uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja_page-0003.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Hematologia-Celer-Vet-LaborLoja_page-0001.jpg",
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja_page-0003.jpg"
    ],
    "resumo": "",
    "descricao": "",
    "botao": "Baixe Nosso Folder",
-   "pdf": "uploads/2023/12/Folder-Hematologia-Celer-Vet-LaborLoja.pdf",
+   "pdf": "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Hematologia-Celer-Vet-LaborLoja.pdf",
    "preco": "Sob consulta",
    "destaque": false,
    "ativo": true,
@@ -982,13 +982,13 @@
     "diagnostico-veterinario"
    ],
    "imagens": [
-    "uploads/2023/12/Folder-Coagulacao-Vet-LaborLoja_page-0001.jpg",
-    "uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja_page-0020.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Coagulacao-Vet-LaborLoja_page-0001.jpg",
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja_page-0020.jpg"
    ],
    "resumo": "",
    "descricao": "",
    "botao": "Baixe Nosso Folder",
-   "pdf": "uploads/2023/12/Folder-Coagulacao-Vet-LaborLoja.pdf",
+   "pdf": "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Coagulacao-Vet-LaborLoja.pdf",
    "preco": "Sob consulta",
    "destaque": false,
    "ativo": true,
@@ -1001,13 +1001,13 @@
     "diagnostico-veterinario"
    ],
    "imagens": [
-    "uploads/2023/12/Folder-Analisador-de-Bioquimica-Seca-Vet-SH101-LaborLoja_page-0001.jpg",
-    "uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja_page-0011.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Analisador-de-Bioquimica-Seca-Vet-SH101-LaborLoja_page-0001.jpg",
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja_page-0011.jpg"
    ],
    "resumo": "",
    "descricao": "",
    "botao": "Baixe Nosso Folder",
-   "pdf": "uploads/2023/12/Folder-Analisador-de-Bioquimica-Seca-Vet-SH101-LaborLoja.pdf",
+   "pdf": "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Analisador-de-Bioquimica-Seca-Vet-SH101-LaborLoja.pdf",
    "preco": "Sob consulta",
    "destaque": false,
    "ativo": true,
@@ -1020,13 +1020,13 @@
     "diagnostico-veterinario"
    ],
    "imagens": [
-    "uploads/2023/12/Folder-Analisador-de-Gases-Sanguineos-Vet-LaborLoja-1_page-0001.jpg",
-    "uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja_page-0005.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Analisador-de-Gases-Sanguineos-Vet-LaborLoja-1_page-0001.jpg",
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja_page-0005.jpg"
    ],
    "resumo": "",
    "descricao": "",
    "botao": "Baixe Nosso Folder",
-   "pdf": "uploads/2023/12/Folder-Analisador-de-Gases-Sanguineos-Vet-LaborLoja.pdf",
+   "pdf": "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Analisador-de-Gases-Sanguineos-Vet-LaborLoja.pdf",
    "preco": "Sob consulta",
    "destaque": false,
    "ativo": true,
@@ -1041,7 +1041,7 @@
     "point-of-care"
    ],
    "imagens": [
-    "uploads/2023/01/fluorescencia-full.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/01/fluorescencia-full.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -1061,7 +1061,7 @@
     "point-of-care"
    ],
    "imagens": [
-    "uploads/2023/01/fluorescencia-full.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/01/fluorescencia-full.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -1081,7 +1081,7 @@
     "point-of-care"
    ],
    "imagens": [
-    "uploads/2023/01/fluorescencia-full.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/01/fluorescencia-full.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -1101,7 +1101,7 @@
     "point-of-care"
    ],
    "imagens": [
-    "uploads/2023/01/fluorescencia-full.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/01/fluorescencia-full.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -1121,7 +1121,7 @@
     "point-of-care"
    ],
    "imagens": [
-    "uploads/2023/01/fluorescencia-full.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/01/fluorescencia-full.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -1141,7 +1141,7 @@
     "point-of-care"
    ],
    "imagens": [
-    "uploads/2023/01/fluorescencia-full.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/01/fluorescencia-full.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -1161,7 +1161,7 @@
     "point-of-care"
    ],
    "imagens": [
-    "uploads/2023/01/fluorescencia-full.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/01/fluorescencia-full.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -1181,7 +1181,7 @@
     "point-of-care"
    ],
    "imagens": [
-    "uploads/2023/01/fluorescencia-full.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2023/01/fluorescencia-full.jpg"
    ],
    "resumo": "",
    "descricao": "",
@@ -1200,12 +1200,12 @@
     "hormonio"
    ],
    "imagens": [
-    "uploads/2022/12/Folder-Bioquimica-Rotor-LaborLoja-1_page-0001.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2022/12/Folder-Bioquimica-Rotor-LaborLoja-1_page-0001.jpg"
    ],
    "resumo": "",
    "descricao": "",
    "botao": "Baixar nosso catálogo",
-   "pdf": "uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja.pdf",
+   "pdf": "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja.pdf",
    "preco": "Sob consulta",
    "destaque": false,
    "ativo": true,
@@ -1218,13 +1218,13 @@
     "diagnostico-veterinario"
    ],
    "imagens": [
-    "uploads/2022/12/Folder-Bioquimica-Rotor-LaborLoja-1_page-0001.jpg",
-    "uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja_page-0008.jpg"
+    "https://laborloja.com.br/wp-content/uploads/2022/12/Folder-Bioquimica-Rotor-LaborLoja-1_page-0001.jpg",
+    "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Catalogo-Veterinario-LaborLoja_page-0008.jpg"
    ],
    "resumo": "",
    "descricao": "",
    "botao": "Baixe Nosso Folder",
-   "pdf": "uploads/2023/12/Folder-Bioquimica-Rotor-LaborLoja.pdf",
+   "pdf": "https://laborloja.com.br/wp-content/uploads/2023/12/Folder-Bioquimica-Rotor-LaborLoja.pdf",
    "preco": "Sob consulta",
    "destaque": false,
    "ativo": true,

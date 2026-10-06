@@ -1,0 +1,2 @@
+// Não utilizado: o Firebase Storage exige plano pago.
+// Fotos e PDFs são guardados no Firestore (veja firestore.rules). Pode apagar este arquivo.

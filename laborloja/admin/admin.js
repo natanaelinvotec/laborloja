@@ -413,14 +413,8 @@ function secFerramentas(main) {
     e.target.disabled = false;
   };
   $("[data-exportar]").onclick = () => {
-    // O link precisa ser criado no documento da página (não num <template>) e estar na página para o clique baixar.
-    const { publicado, ...dados } = D;
-    const url = URL.createObjectURL(new Blob([JSON.stringify(dados, null, 1)], { type: "application/json" }));
-    const a = document.createElement("a");
-    a.href = url; a.download = `laborloja-backup-${new Date().toISOString().slice(0, 10)}.json`;
-    document.body.append(a); a.click(); a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 10000);
-    toast("Backup baixado ✔ (pasta Downloads)", "ok");
+    const a = h(`<a download="laborloja-backup-${new Date().toISOString().slice(0, 10)}.json"></a>`);
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(D, null, 1)], { type: "application/json" })); a.click();
   };
   $("[data-restaurar]").onclick = async () => {
     const [f] = await escolherArquivo("application/json"); if (!f) return;
