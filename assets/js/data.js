@@ -33,6 +33,15 @@ function lerDemo() { try { return JSON.parse(localStorage.getItem(CHAVE_DEMO) ||
 export function salvarDemo(dados) { try { localStorage.setItem(CHAVE_DEMO, JSON.stringify(dados)); return true; } catch { return false; } }
 export function limparDemo() { try { localStorage.removeItem(CHAVE_DEMO); } catch {} }
 
+/** Copia do padrão só as chaves que não existem (não sobrescreve nada que foi editado). */
+function preencherFaltantes(alvo, padrao) {
+  if (!alvo || !padrao || typeof padrao !== "object" || Array.isArray(padrao)) return;
+  for (const [k, v] of Object.entries(padrao)) {
+    if (!(k in alvo)) alvo[k] = v;
+    else if (v && typeof v === "object" && !Array.isArray(v)) preencherFaltantes(alvo[k], v);
+  }
+}
+
 const ordenar = (l = []) => l.sort((a, b) => (a.ordem ?? 999) - (b.ordem ?? 999));
 
 /** Carrega todo o conteúdo: { site, paginas, categorias, produtos }. `publicado` indica se veio do Firebase. */
@@ -43,6 +52,8 @@ export async function carregarDados() {
       const snap = await fb.fs.getDoc(fb.fs.doc(fb.db, "conteudo", "tudo"));
       if (snap.exists()) {
         const d = snap.data();
+        // Recursos novos do site (ex.: mega menu) ganham o conteúdo padrão até serem editados no painel.
+        try { preencherFaltantes(d.site, (await carregarSeed()).site); } catch {}
         ordenar(d.produtos); ordenar(d.categorias);
         return Object.assign(d, { publicado: true });
       }
@@ -119,8 +130,17 @@ export function urlDoArquivo(ref) {
 /** Observa a página e troca automaticamente todo "arquivo:…" (src, href, background) pelo arquivo real. */
 export function ativarArquivos(raiz = document.body) {
   const re = /arquivo:[a-z0-9]+/gi;
+  // Arquivos migrados do WordPress ficam em "uploads/…" (relativo à raiz do site);
+  // dentro do painel (/admin/) é preciso subir um nível para enxergá-los.
+  const noAdmin = location.pathname.includes("/admin/");
+  const corrigirRelativo = (el) => {
+    for (const attr of ["src", "href"]) { const v = el.getAttribute(attr); if (v?.startsWith("uploads/")) el.setAttribute(attr, "../" + v); }
+    const st = el.getAttribute("style");
+    if (st && /url\(["']?uploads\//.test(st)) el.setAttribute("style", st.replace(/url\((["']?)uploads\//g, "url($1../uploads/"));
+  };
   const tratar = (el) => {
     if (el.nodeType !== 1) return;
+    if (noAdmin) corrigirRelativo(el);
     for (const attr of ["src", "href"]) {
       const v = el.getAttribute(attr);
       if (v?.startsWith(PREFIXO_ARQUIVO)) urlDoArquivo(v).then((u) => { if (el.getAttribute(attr) === v) el.setAttribute(attr, u); }).catch(console.warn);
@@ -130,7 +150,7 @@ export function ativarArquivos(raiz = document.body) {
       for (const ref of st.match(re) || []) urlDoArquivo(ref).then((u) => { el.setAttribute("style", el.getAttribute("style").split(ref).join(u)); }).catch(console.warn);
     }
   };
-  const varrer = (n) => { tratar(n); n.querySelectorAll?.("[src^='arquivo:'],[href^='arquivo:'],[style*='arquivo:']").forEach(tratar); };
+  const varrer = (n) => { tratar(n); n.querySelectorAll?.("[src^='arquivo:'],[href^='arquivo:'],[style*='arquivo:'],[src^='uploads/'],[href^='uploads/'],[style*='uploads/']").forEach(tratar); };
   varrer(raiz);
   new MutationObserver((ms) => ms.forEach((m) => (m.type === "attributes" ? tratar(m.target) : m.addedNodes.forEach(varrer))))
     .observe(raiz, { childList: true, subtree: true, attributes: true, attributeFilter: ["src", "href", "style"] });

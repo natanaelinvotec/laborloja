@@ -11,19 +11,20 @@ iniciarPagina((main, D) => {
 
   main.innerHTML = `
   <section class="hero"><div class="container hero-grade">
-    <div class="hero-principal" style="${hero.imagemFundo ? `background-image:url('${esc(hero.imagemFundo)}')` : ""}">
+    <div class="hero-principal ${hero.imagemFundo ? "com-fundo" : ""}">
+      ${hero.imagemFundo ? `<div class="hero-fundo" style="background-image:url('${esc(hero.imagemFundo)}')"></div>` : ""}
       <div class="hero-texto">
-        ${hero.etiqueta ? `<span class="hero-etiqueta">${esc(hero.etiqueta)}</span>` : ""}
-        <h1>${esc(hero.titulo)}</h1>
-        <div class="hero-linhas">${(hero.linhas || []).map((l) => `<span>${esc(l)}</span>`).join("")}</div>
+        ${hero.etiqueta ? `<span class="hero-etiqueta entra-esq" style="--d:.15s">${esc(hero.etiqueta)}</span>` : ""}
+        <h1 class="entra-esq" style="--d:.3s">${esc(hero.titulo)}</h1>
+        <div class="hero-linhas">${(hero.linhas || []).map((l, i) => `<span class="entra-baixo" style="--d:${(0.55 + i * 0.18).toFixed(2)}s">${esc(l)}</span>`).join("")}</div>
       </div>
+      ${hero.imagem ? `<img class="hero-produto entra-zoom" style="--d:.4s" src="${esc(hero.imagem)}" alt="">` : ""}
       <div class="hero-lado">
-        ${hero.imagem ? `<img src="${esc(hero.imagem)}" alt="">` : ""}
-        <div class="hero-lado-texto">${esc(hero.textoLateral || "")}<b>${esc(hero.textoLateralDestaque || "")}</b></div>
-        ${hero.botaoTexto ? `<a class="btn escuro grande" href="${esc(resolverLink(hero.botaoLink))}" target="${hero.botaoLink === "whatsapp" ? "_blank" : "_self"}">${esc(hero.botaoTexto)}</a>` : ""}
+        <div class="hero-lado-texto entra-dir" style="--d:.9s">${esc(hero.textoLateral || "")}<b>${esc(hero.textoLateralDestaque || "")}</b></div>
+        ${hero.botaoTexto ? `<a class="btn escuro grande entra-baixo" style="--d:1.15s" href="${esc(resolverLink(hero.botaoLink))}" target="${hero.botaoLink === "whatsapp" ? "_blank" : "_self"}">${esc(hero.botaoTexto)}</a>` : ""}
       </div>
     </div>
-    ${hero.bannerLateral ? `<a class="hero-banner" href="${esc(resolverLink(hero.bannerLateralLink))}"><img src="${esc(hero.bannerLateral)}" alt=""></a>` : ""}
+    ${hero.bannerLateral ? `<a class="hero-banner entra-dir" style="--d:.5s" href="${esc(resolverLink(hero.bannerLateralLink))}"><img src="${esc(hero.bannerLateral)}" alt=""></a>` : ""}
   </div></section>
 
   <section class="secao" style="padding-top:20px"><div class="container">
@@ -33,9 +34,9 @@ iniciarPagina((main, D) => {
 
   <section class="secao cinza"><div class="container">
     <div class="grade-promos">${(h.promos || []).map((p) => `
-      <div class="promo"><div><h3>${esc(p.titulo)}</h3><p>${esc(p.texto)}</p>
+      <div class="promo revelar"><div class="promo-texto"><h3 class="digita">${esc(p.titulo)}</h3><p>${esc(p.texto)}</p>
         <a class="btn" href="${esc(resolverLink(p.botaoLink, "Olá! Gostaria de uma cotação: " + p.titulo))}" ${p.botaoLink === "whatsapp" ? 'target="_blank"' : ""}>${esc(p.botaoTexto)}</a></div>
-        ${p.imagem ? `<img loading="lazy" src="${esc(p.imagem)}" alt="">` : ""}</div>`).join("")}</div>
+        ${p.imagem ? `<div class="promo-moldura"><img loading="lazy" src="${esc(p.imagem)}" alt=""></div>` : ""}</div>`).join("")}</div>
     ${destaques.length ? `<div class="secao-titulo" style="margin-top:56px"><h2>${esc(h.tituloDestaques)}</h2></div>
     <div class="grade-lista">${destaques.map(linhaProduto).join("")}</div>` : ""}
   </div></section>

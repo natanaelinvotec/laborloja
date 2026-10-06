@@ -429,10 +429,29 @@ function secFerramentas(main) {
 }
 
 const decodificar = (s = "") => { const t = document.createElement("textarea"); t.innerHTML = s; return t.value; };
+// Busca na API REST do WordPress. Se o servidor não liberar CORS para este domínio,
+// usa o JSONP nativo do WordPress (parâmetro _jsonp), que não depende de CORS.
 async function wpGet(base, caminho) {
-  const r = await fetch(base + caminho, { headers: { Accept: "application/json" } });
-  if (!r.ok) throw new Error(`${caminho} respondeu ${r.status}`);
-  return { dados: await r.json(), total: +r.headers.get("X-WP-TotalPages") || 1 };
+  try {
+    const r = await fetch(base + caminho, { headers: { Accept: "application/json" } });
+    if (!r.ok) throw new Error(`${caminho} respondeu ${r.status}`);
+    return { dados: await r.json(), total: +r.headers.get("X-WP-TotalPages") || 0 };
+  } catch (e) {
+    if (!(e instanceof TypeError)) throw e;      // TypeError = bloqueio de CORS/rede
+    return { dados: await wpJsonp(base + caminho), total: 0 };
+  }
+}
+function wpJsonp(url) {
+  return new Promise((ok, falha) => {
+    const nome = "__wp" + Date.now() + Math.random().toString(36).slice(2, 8);
+    const s = document.createElement("script");
+    const limpar = () => { delete window[nome]; s.remove(); clearTimeout(t); };
+    const t = setTimeout(() => { limpar(); falha(new Error("o site antigo não respondeu (tempo esgotado)")); }, 30000);
+    window[nome] = (dados) => { limpar(); dados && dados.code && dados.message ? falha(new Error(dados.message)) : ok(dados); };
+    s.onerror = () => { limpar(); falha(new Error("não foi possível acessar " + url.split("?")[0])); };
+    s.src = url + (url.includes("?") ? "&" : "?") + "_jsonp=" + nome;
+    document.head.append(s);
+  });
 }
 const limparHtml = (s = "") => s.replace(/<!--[\s\S]*?-->/g, "").replace(/\s(class|style|id|data-[\w-]+|srcset|sizes|loading|decoding)="[^"]*"/g, "").replace(/<\/?(span|div)[^>]*>/g, "").replace(/\n\s*\n/g, "\n").trim();
 
@@ -465,6 +484,7 @@ async function importarWordPress(base, log) {
       if (ex) Object.assign(ex, novo); else D.produtos.push(novo);
       n++;
     }
+    if (!total) total = r.dados.length === 100 ? pagina + 1 : pagina; // sem cabeçalho de total: continua enquanto vier página cheia
   } while (++pagina <= total);
   log(`✔ ${n} produtos`);
 

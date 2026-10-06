@@ -28,23 +28,28 @@
   "menu": [
    {
     "texto": "Home",
-    "link": "index.html"
+    "link": "index.html",
+    "mega": false
    },
    {
     "texto": "Página de Produtos",
-    "link": "produtos.html"
+    "link": "produtos.html",
+    "mega": false
    },
    {
     "texto": "Categorias",
-    "link": "categorias.html"
+    "link": "categorias.html",
+    "mega": true
    },
    {
     "texto": "Contato",
-    "link": "pagina.html?p=contato"
+    "link": "pagina.html?p=contato",
+    "mega": false
    },
    {
     "texto": "Política de privacidade",
-    "link": "pagina.html?p=politica-de-privacidade"
+    "link": "pagina.html?p=politica-de-privacidade",
+    "mega": false
    }
   ],
   "home": {
@@ -60,8 +65,8 @@
     "textoLateralDestaque": "LaborLoja Produtos Diagnósticos",
     "botaoTexto": "Entre em contato",
     "botaoLink": "whatsapp",
-    "imagem": "https://laborloja.com.br/wp-content/uploads/2023/12/Standard-M10.jpg",
-    "imagemFundo": "",
+    "imagem": "",
+    "imagemFundo": "https://laborloja.com.br/wp-content/uploads/2023/10/banner_11.jpg",
     "bannerLateral": "https://laborloja.com.br/wp-content/uploads/2023/12/f-igg-igm-jpg.jpg",
     "bannerLateralLink": "produto.html?p=eco-f-covid-19-igg-igm"
    },
@@ -233,6 +238,73 @@
     "https://laborloja.com.br/wp-content/uploads/2022/12/2.png",
     "https://laborloja.com.br/wp-content/uploads/2022/12/3.png",
     "https://laborloja.com.br/wp-content/uploads/2022/12/4.png"
+   ]
+  },
+  "megaMenu": {
+   "itens": [
+    {
+     "nome": "Point of Care",
+     "subtitulo": "ECO Brasil",
+     "icone": "monitor",
+     "link": "produtos.html?cat=point-of-care"
+    },
+    {
+     "nome": "Drogas de Abuso",
+     "subtitulo": "ECO Brasil",
+     "icone": "folha",
+     "link": "produtos.html?cat=drogas-de-abuso"
+    },
+    {
+     "nome": "Diagnóstico Molecular",
+     "subtitulo": "ECO Brasil",
+     "icone": "atomo",
+     "link": "produtos.html?cat=diagnosticos-molecular"
+    },
+    {
+     "nome": "Alergia e Intolerância",
+     "subtitulo": "ECO Brasil",
+     "icone": "maca",
+     "link": "produtos.html?cat=alergia-intolorencia"
+    },
+    {
+     "nome": "Animais de Companhia",
+     "subtitulo": "ECO Brasil",
+     "icone": "gato",
+     "link": "produtos.html?cat=animais-pequenos"
+    },
+    {
+     "nome": "Animais de Produção",
+     "subtitulo": "ECO Brasil",
+     "icone": "fazenda",
+     "link": "produtos.html?cat=animais-grande-porte"
+    },
+    {
+     "nome": "Diagnóstico Veterinário",
+     "subtitulo": "Celer Vet",
+     "icone": "pata",
+     "link": "produtos.html?cat=diagnostico-veterinario"
+    },
+    {
+     "nome": "Catálogo Veterinário",
+     "subtitulo": "Celer Vet",
+     "icone": "catalogo",
+     "link": "produto.html?p=folder-catalogo-veterinario"
+    }
+   ],
+   "banner": {
+    "imagem": "https://laborloja.com.br/wp-content/uploads/2023/01/sale-134.jpg",
+    "linha1": "Converse com nossa",
+    "destaque": "ESPECIALISTA",
+    "linha2": "EQUIPE PRONTA",
+    "botaoTexto": "Whatsapp Online",
+    "botaoLink": "whatsapp"
+   },
+   "tituloNovos": "Novos produtos",
+   "novos": [
+    "intolerancia-alimentar-eco-test",
+    "folder-catalogo-veterinario",
+    "eco-f-adenovirus-ag",
+    "standard-m10"
    ]
   }
  },

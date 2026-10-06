@@ -1,5 +1,7 @@
 // Núcleo do site público: monta cabeçalho, rodapé, cartões e a lista de orçamento.
 import { carregarDados, ativarArquivos } from "./data.js";
+import { iconeSvg } from "./icones.js";
+import { ativarEfeitos } from "./efeitos.js";
 
 export const esc = (s = "") => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 export const qs = (n) => new URLSearchParams(location.search).get(n);
@@ -93,7 +95,8 @@ export function botaoCoracao(p) {
 }
 export function cartaoProduto(p) {
   return `<article class="cartao-prod">
-    <div class="img">${botaoCoracao(p)}<a href="produto.html?p=${encodeURIComponent(p.id)}"><img loading="lazy" src="${esc(p.imagens?.[0] || "")}" alt="${esc(p.nome)}"></a></div>
+    <div class="img">${botaoCoracao(p)}<a href="produto.html?p=${encodeURIComponent(p.id)}"><img loading="lazy" src="${esc(p.imagens?.[0] || "")}" alt="${esc(p.nome)}">${p.imagens?.[1] ? `<img class="img2" loading="lazy" src="${esc(p.imagens[1])}" alt="">` : ""}</a>
+      <a class="ver-rapido" href="produto.html?p=${encodeURIComponent(p.id)}">Ver detalhes</a></div>
     <div class="categorias-mini">${esc(nomeCats(p))}</div>
     <h4><a href="produto.html?p=${encodeURIComponent(p.id)}">${esc(p.nome)}</a></h4>
     ${botaoProduto(p)}
@@ -112,6 +115,21 @@ function arvoreCategorias(cls = "") {
   return raiz.map((c) => `<a class="${cls}" href="produtos.html?cat=${c.id}">${esc(c.nome)}</a>` +
     filhosDe(c.id).map((f) => `<a class="sub" href="produtos.html?cat=${f.id}">${esc(f.nome)}</a>`).join("")).join("");
 }
+/** Painel que abre ao passar o mouse em "Categorias": ícones, banner de atendimento e novos produtos. */
+function megaMenu() {
+  const m = D.site.megaMenu, b = m.banner || {};
+  const novos = (m.novos || []).map(produto).filter((p) => p && p.ativo !== false).slice(0, 4);
+  return `<div class="mega" role="menu">
+    <div class="mega-cats">${(m.itens || []).map((it, i) => `<a class="mega-item" role="menuitem" href="${esc(resolverLink(it.link))}" style="--i:${i}">
+      <span class="mega-ic">${iconeSvg(it.icone)}</span><b>${esc(it.nome)}</b>${it.subtitulo ? `<small>${esc(it.subtitulo)}</small>` : ""}</a>`).join("")}</div>
+    ${b.imagem ? `<a class="mega-banner" href="${esc(resolverLink(b.botaoLink, "Olá! Gostaria de falar com uma especialista."))}" ${b.botaoLink === "whatsapp" ? 'target="_blank" rel="noopener"' : ""}>
+      <img src="${esc(b.imagem)}" alt="" loading="lazy">
+      <span class="mega-banner-txt"><span>${esc(b.linha1 || "")}</span><strong>${esc(b.destaque || "")}</strong><em>${esc(b.linha2 || "")}</em>
+      ${b.botaoTexto ? `<span class="btn-whats">${esc(b.botaoTexto)}</span>` : ""}</span></a>` : ""}
+    ${novos.length ? `<div class="mega-novos"><h4>${esc(m.tituloNovos || "Novos produtos")}</h4><div class="mega-novos-grade">${novos.map((p) => `<a href="produto.html?p=${encodeURIComponent(p.id)}"><span class="zoom"><img src="${esc(p.imagens?.[0] || "")}" alt="" loading="lazy"></span><span>${esc(p.nome)}</span></a>`).join("")}</div></div>` : ""}
+  </div>`;
+}
+
 function cabecalho() {
   const g = D.site.geral, atual = location.pathname.split("/").pop() || "index.html";
   return `<header class="topo"><div class="container">
@@ -132,7 +150,11 @@ function cabecalho() {
     </div>
     <div class="nav-linha">
       <a class="nav-ofertas" href="${esc(g.linkOfertas || "produtos.html")}"><i>%</i>${esc(g.rotuloOfertas || "OFERTAS")}</a>
-      <nav class="nav-principal">${D.site.menu.map((m) => `<a href="${esc(resolverLink(m.link))}" class="${m.link === atual ? "ativo" : ""}">${esc(m.texto)}</a>`).join("")}</nav>
+      <nav class="nav-principal">${D.site.menu.map((m) => {
+        const mega = (m.mega ?? /categorias/i.test(m.texto)) && D.site.megaMenu;
+        const a = `<a href="${esc(resolverLink(m.link))}" class="${m.link === atual ? "ativo" : ""}">${esc(m.texto)}${mega ? ' <span class="seta" aria-hidden="true">▾</span>' : ""}</a>`;
+        return mega ? `<div class="tem-mega">${a}${megaMenu()}</div>` : a;
+      }).join("")}</nav>
       ${g.avisoTopo ? `<div class="aviso-topo">${ICONE.presente}${esc(g.avisoTopo)}</div>` : ""}
     </div>
   </div></header>`;
@@ -208,6 +230,7 @@ export async function iniciarPagina(render) {
     ativarArquivos(document.body); // fotos/PDFs enviados pelo painel ("arquivo:…")
     await render(main, D);
     ligarEventos();
+    ativarEfeitos(document);
     atualizarContador();
   } catch (e) {
     console.error(e);

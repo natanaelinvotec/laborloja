@@ -1,6 +1,7 @@
 // Definição dos formulários do painel. Para criar um novo campo editável,
 // basta acrescentar uma linha aqui — o painel desenha o formulário sozinho.
 // Tipos: texto, area, linhas, numero, check, cor, select, link, imagem, arquivo, galeria, rico, categorias, produtos, lista
+import { opcoesIcones } from "../assets/js/icones.js";
 const esc = (s = "") => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const FONTES = ["Rubik", "Source Sans Pro", "Montserrat", "Poppins", "Open Sans", "Roboto", "Lato", "Inter", "Nunito"].map((f) => [f, f]);
 const botao = (k = "") => [
@@ -121,7 +122,24 @@ export const esquemas = {
     titulo: "Menu e rodapé", sub: "Links do topo e do rodapé do site.",
     cartoes: [
       { titulo: "Menu do topo", campos: [
-        { k: "menu", t: "lista", item: "Link", titulo: "texto", novo: { texto: "", link: "" }, campos: [{ k: "texto", t: "texto", rot: "Texto" }, { k: "link", t: "link", rot: "Endereço" }] }
+        { k: "menu", t: "lista", item: "Link", titulo: "texto", novo: { texto: "", link: "", mega: false }, campos: [
+          { k: "texto", t: "texto", rot: "Texto" }, { k: "link", t: "link", rot: "Endereço" },
+          { k: "mega", t: "check", rot: "Abrir o menu de categorias ao passar o mouse" }
+        ]}
+      ]},
+      { titulo: "Menu de categorias (abre ao passar o mouse)", ajuda: "Painel grande com ícones, banner de atendimento e novos produtos.", campos: [
+        { k: "megaMenu.itens", t: "lista", item: "Categoria", titulo: "nome", novo: { nome: "", subtitulo: "", icone: "frasco", link: "produtos.html" }, campos: [
+          { k: "nome", t: "texto", rot: "Nome" }, { k: "subtitulo", t: "texto", rot: "Texto menor (ex.: marca)" },
+          { k: "icone", t: "select", rot: "Ícone", opcoes: opcoesIcones }, { k: "link", t: "link", rot: "Para onde leva" }
+        ]},
+        { k: "megaMenu.banner.imagem", t: "imagem", rot: "Foto do banner do meio", largo: true },
+        { k: "megaMenu.banner.linha1", t: "texto", rot: "Texto 1 (ex.: Converse com nossa)" },
+        { k: "megaMenu.banner.destaque", t: "texto", rot: "Texto em destaque (ex.: ESPECIALISTA)" },
+        { k: "megaMenu.banner.linha2", t: "texto", rot: "Texto 2 (ex.: EQUIPE PRONTA)" },
+        { k: "megaMenu.banner.botaoTexto", t: "texto", rot: "Texto do botão" },
+        { k: "megaMenu.banner.botaoLink", t: "link", rot: "Para onde o banner leva" },
+        { k: "megaMenu.tituloNovos", t: "texto", rot: "Título da coluna de produtos" },
+        { k: "megaMenu.novos", t: "produtos", rot: "Produtos mostrados (até 4)" }
       ]},
       { titulo: "Faixa azul", campos: [
         { k: "rodape.tituloRedes", t: "texto", rot: "Título das redes sociais" },

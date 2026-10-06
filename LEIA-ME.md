@@ -49,12 +49,13 @@ Dicas:
 2. Publique as regras no console: **Firestore → Regras → colar → Publicar**.
 3. A pessoa entra em `/admin` → **Primeiro acesso** e cria a própria senha.
 
-### Antes de desligar o WordPress
-As fotos iniciais ainda apontam para `laborloja.com.br/wp-content/uploads`. Antes de desligar o site antigo, rode na pasta do projeto:
-```bash
-node scripts/baixar-imagens.mjs
-```
-Isso baixa as imagens/PDFs para `assets/uploads/` e atualiza `data/conteudo.json`; depois envie ao GitHub e, no painel, use **Importar e backup → Restaurar de um backup** com o JSON, ou troque as imagens pelo próprio painel.
+### Migrar fotos e PDFs do WordPress (antes de desligar o site antigo)
+Fotos e PDFs ainda são carregados de `laborloja.com.br/wp-content/uploads`. Para trazer tudo para o site novo:
+1. No painel: **Importar e backup → Baixar backup (.json)** (vai para a pasta Downloads).
+2. Na pasta do projeto, dê dois cliques em **`MIGRAR-ARQUIVOS.bat`**. Ele baixa todos os arquivos para a pasta `uploads` e cria `Downloads\laborloja-backup-migrado.json` com os endereços novos.
+3. Envie a pasta `uploads` ao GitHub (arraste na página de upload do repositório; o site do GitHub aceita até 100 arquivos por vez e 25 MB por arquivo — se passar disso, arraste uma subpasta por vez, ex.: `uploads/2023`, ou use o GitHub Desktop).
+4. Espere ~1 minuto e, no painel: **Importar e backup → Restaurar de um backup** → escolha `laborloja-backup-migrado.json`.
+5. Confira o site. Agora o WordPress pode ser desligado.
 
 ### Usar o domínio laborloja.com.br
 GitHub → Settings → Pages → *Custom domain* → `laborloja.com.br`, e no DNS crie os registros indicados pelo GitHub. Depois adicione o domínio no Firebase em **Authentication → Configurações → Domínios autorizados**.
