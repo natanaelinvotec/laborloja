@@ -75,5 +75,7 @@ function ligarMegaMenu() {
       if (matchMedia("(hover: none), (max-width: 820px)").matches && !item.classList.contains("aberto")) { e.preventDefault(); abrir(); }
     });
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") item.classList.remove("aberto"); });
+    // ao rolar a página o menu fecha (só no computador; no celular ele fica dentro do menu)
+    addEventListener("scroll", () => { if (!matchMedia("(max-width: 820px)").matches) item.classList.remove("aberto"); }, { passive: true });
   });
 }

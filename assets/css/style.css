@@ -441,3 +441,19 @@ button,input,select,textarea{font:inherit}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .efeitos .revelar{opacity:1;transform:none}
 }
+
+/* ---- Ajustes para telas médias (notebooks pequenos / janelas estreitas) ---- */
+@media (max-width:1180px){
+  .aviso-topo{display:none}
+  .nav-linha{gap:22px}
+  .hero-grade{grid-template-columns:1fr 210px}
+}
+@media (max-width:1100px) and (min-width:821px){
+  .hero-principal.com-fundo{grid-template-columns:1fr;padding:28px 32px}
+  .hero-principal.com-fundo .hero-texto{max-width:52%}
+  .hero-principal.com-fundo .hero-lado{grid-column:1;flex-direction:row;align-items:center;margin-top:14px}
+  .hero-principal.com-fundo .hero-lado-texto{display:none}
+  .hero-fundo{background-position:72% center}
+  .hero-texto h1{font-size:36px}
+  .hero-linhas span{font-size:24px}
+}
