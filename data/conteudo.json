@@ -9,8 +9,8 @@
    "corTexto": "#000000",
    "corFundoCinza": "#dfe5e8",
    "corRodape": "#0d1530",
-   "fonteTitulos": "Rubik",
-   "fonteTexto": "Source Sans Pro",
+   "fonteTitulos": "Plus Jakarta Sans",
+   "fonteTexto": "DM Sans",
    "avisoTopo": "Atendimento especializado em diagnósticos",
    "rotuloOfertas": "OFERTAS",
    "linkOfertas": "produtos.html"
@@ -40,6 +40,11 @@
     "texto": "Categorias",
     "link": "categorias.html",
     "mega": true
+   },
+   {
+    "texto": "Institucional",
+    "link": "pagina.html?p=quem-somos",
+    "mega": false
    },
    {
     "texto": "Contato",
@@ -185,7 +190,28 @@
      "imagem": "uploads/2023/12/celer-vet.png",
      "link": ""
     }
-   ]
+   ],
+   "slides": [
+    {
+     "ativo": true,
+     "etiqueta": "Plataforma Point of Care Biologia Molecular",
+     "titulo": "ECO M10",
+     "linhas": [
+      "Simples",
+      "Resultados precisos",
+      "Rápido"
+     ],
+     "imagem": "",
+     "imagemFundo": "uploads/2023/10/banner_11.jpg",
+     "tema": "foto",
+     "textoLateral": "O MELHOR TECNOLOGIA A SUA DISPOSIÇÃO!",
+     "textoLateralDestaque": "LaborLoja Produtos Diagnósticos",
+     "botaoTexto": "Entre em contato",
+     "botaoLink": "whatsapp"
+    }
+   ],
+   "intervaloSlides": 7,
+   "tituloParceiros": "Nossos Parceiros"
   },
   "rodape": {
    "tituloRedes": "Siga-nos em nossas redes sociais",
@@ -313,7 +339,7 @@
    "id": "quem-somos",
    "titulo": "Quem Somos Nós – LaborLoja",
    "imagem": "",
-   "noticia": true,
+   "noticia": false,
    "conteudo": "<p>A LaborLoja é uma empresa de Campo Grande – MS especializada em produtos para diagnóstico laboratorial, humano e veterinário.</p><p>Edite este texto pelo painel em <b>Páginas → Quem Somos</b> ou use <b>Importar do WordPress</b> para trazer o texto original.</p>"
   },
   {

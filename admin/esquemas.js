@@ -3,7 +3,7 @@
 // Tipos: texto, area, linhas, numero, check, cor, select, link, imagem, arquivo, galeria, rico, categorias, produtos, lista
 import { opcoesIcones } from "../assets/js/icones.js";
 const esc = (s = "") => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const FONTES = ["Rubik", "Source Sans Pro", "Montserrat", "Poppins", "Open Sans", "Roboto", "Lato", "Inter", "Nunito"].map((f) => [f, f]);
+const FONTES = ["Plus Jakarta Sans", "DM Sans", "Manrope", "Rubik", "Source Sans Pro", "Montserrat", "Poppins", "Open Sans", "Roboto", "Lato", "Inter", "Nunito"].map((f) => [f, f]);
 const botao = (k = "") => [
   { k: k + "botaoTexto", t: "texto", rot: "Texto do botão" },
   { k: k + "botaoLink", t: "link", rot: "Para onde o botão leva" }
@@ -62,24 +62,42 @@ export const esquemas = {
   home: {
     titulo: "Página inicial", sub: "Cada bloco abaixo corresponde a uma parte da página inicial, de cima para baixo.",
     cartoes: [
-      { titulo: "① Banner principal", campos: [
-        { k: "home.hero.etiqueta", t: "texto", rot: "Etiqueta (caixinha branca)" },
-        { k: "home.hero.titulo", t: "texto", rot: "Título grande" },
-        { k: "home.hero.linhas", t: "linhas", rot: "Frases em destaque (uma por linha)" },
-        { k: "home.hero.textoLateral", t: "texto", rot: "Texto ao lado da imagem" },
-        { k: "home.hero.textoLateralDestaque", t: "texto", rot: "Texto em negrito ao lado da imagem" },
-        ...botao("home.hero."),
-        { k: "home.hero.imagem", t: "imagem", rot: "Imagem do produto" },
-        { k: "home.hero.imagemFundo", t: "imagem", rot: "Imagem de fundo (opcional)" },
-        { k: "home.hero.bannerLateral", t: "imagem", rot: "Banner da direita" },
-        { k: "home.hero.bannerLateralLink", t: "link", rot: "Link do banner da direita" }
+      { titulo: "① Banner principal (slides)", ajuda: "Cada slide aparece em sequência, trocando sozinho. Use a seta ↑↓ para mudar a ordem.", campos: [
+        { k: "home.slides", t: "lista", item: "Slide", titulo: "titulo", novo: { ativo: true, etiqueta: "", titulo: "", subtitulo: "", linhas: [], preco: "", condicao: "", validade: "", aviso: "", imagem: "", marca: "", selo: "", botaoTexto: "Fale com um especialista", botaoLink: "whatsapp", botao2Texto: "", botao2Link: "", imagemFundo: "", tema: "claro" }, campos: [
+          { k: "ativo", t: "check", rot: "Mostrar este slide" },
+          { k: "etiqueta", t: "texto", rot: "Etiqueta (ex.: Automação em Bioquímica)" },
+          { k: "titulo", t: "texto", rot: "Título grande" },
+          { k: "subtitulo", t: "texto", rot: "Frase abaixo do título (opcional)", largo: true },
+          { k: "linhas", t: "linhas", rot: "Vantagens (uma por linha, aparecem com ✓)", dica: "Linhas que começam com “Atenção” viram um aviso amarelo." },
+          { k: "precoChamada", t: "texto", rot: "Texto acima do preço (ex.: Condição especial)" },
+          { k: "preco", t: "texto", rot: "Preço (ex.: R$ 65.000,00)" },
+          { k: "condicao", t: "texto", rot: "Condição (ex.: em 10x sem juros)" },
+          { k: "validade", t: "texto", rot: "Validade (ex.: Válido até 30/11/2026)" },
+          { k: "aviso", t: "texto", rot: "Aviso (opcional)", largo: true },
+          { k: "imagem", t: "imagem", rot: "Foto do equipamento", dica: "De preferência PNG sem fundo. Fundo branco também funciona." },
+          { k: "marca", t: "imagem", rot: "Logo do fabricante (canto da foto)", dica: "Opcional. Use “Remover fundo” se o logo vier com fundo." },
+          { k: "selo", t: "texto", rot: "Selo (ex.: OFERTA, LANÇAMENTO)" },
+          { k: "tema", t: "select", rot: "Estilo do fundo", opcoes: [["claro", "Claro (padrão)"], ["escuro", "Azul escuro"], ["foto", "Imagem de fundo"]] },
+          { k: "imagemFundo", t: "imagem", rot: "Imagem de fundo (só para o estilo “Imagem de fundo”)" },
+          ...botao(""),
+          { k: "botao2Texto", t: "texto", rot: "Segundo botão (opcional)" },
+          { k: "botao2Link", t: "link", rot: "Para onde o segundo botão leva" }
+        ]},
+        { k: "home.intervaloSlides", t: "numero", rot: "Tempo de cada slide (segundos)" }
+      ]},
+      { titulo: "① Cartão ao lado do banner (opcional)", ajuda: "Deixe a imagem vazia para o banner ocupar toda a largura.", campos: [
+        { k: "home.destaqueLateral.imagem", t: "imagem", rot: "Imagem", largo: true },
+        { k: "home.destaqueLateral.titulo", t: "texto", rot: "Título" },
+        { k: "home.destaqueLateral.texto", t: "texto", rot: "Texto" },
+        { k: "home.destaqueLateral.selo", t: "texto", rot: "Selo (ex.: OFERTA)" },
+        { k: "home.destaqueLateral.link", t: "link", rot: "Para onde leva" }
       ]},
       { titulo: "② Categorias em destaque", ajuda: "Quais categorias aparecem aqui é escolhido em Categorias → “Mostrar na página inicial”.", campos: [
         { k: "home.tituloCategorias", t: "texto", rot: "Título da seção", largo: true }
       ]},
       { titulo: "③ Cartões escuros de promoção", campos: [
         { k: "home.promos", t: "lista", item: "Cartão", titulo: "titulo", novo: { titulo: "", texto: "", botaoTexto: "Saiba mais", botaoLink: "produtos.html", imagem: "" }, campos: [
-          { k: "titulo", t: "texto", rot: "Título" }, { k: "texto", t: "texto", rot: "Texto" }, ...botao(), { k: "imagem", t: "imagem", rot: "Imagem", largo: true }
+          { k: "titulo", t: "texto", rot: "Título" }, { k: "texto", t: "texto", rot: "Texto" }, { k: "selo", t: "texto", rot: "Selo (opcional, ex.: PROMOÇÃO)" }, ...botao(), { k: "imagem", t: "imagem", rot: "Imagem (aparece inteira, sem cortes)", largo: true }
         ]}
       ]},
       { titulo: "④ Produtos em destaque", ajuda: "Marque “Destaque na página inicial” no cadastro do produto para ele aparecer aqui.", campos: [
@@ -109,8 +127,8 @@ export const esquemas = {
         { k: "home.tituloPopular", t: "texto", rot: "Título do cartão azul" },
         { k: "home.produtosPopulares", t: "produtos", rot: "Produto do cartão azul (o primeiro marcado aparece)" }
       ]},
-      { titulo: "⑨ Novidades e marcas parceiras", ajuda: "Páginas marcadas como “Mostrar em Novidades” aparecem aqui.", campos: [
-        { k: "home.tituloNoticias", t: "texto", rot: "Título de Novidades", largo: true },
+      { titulo: "⑨ Nossos Parceiros", campos: [
+        { k: "home.tituloParceiros", t: "texto", rot: "Título da seção", largo: true },
         { k: "home.parceiros", t: "lista", item: "Marca", titulo: "nome", novo: { nome: "", imagem: "", link: "" }, campos: [
           { k: "nome", t: "texto", rot: "Nome" }, { k: "link", t: "texto", rot: "Site da marca (opcional)" }, { k: "imagem", t: "imagem", rot: "Logo", largo: true }
         ]}
@@ -211,13 +229,11 @@ export const esquemas = {
     colunas: [
       { rot: "Página", v: (p) => `<b>${esc(p.titulo)}</b>` },
       { rot: "Endereço", mob: false, v: (p) => `<code>pagina.html?p=${esc(p.id)}</code>` },
-      { rot: "", v: (p) => (p.noticia ? '<span class="selo az">Em Novidades</span>' : "") }
     ],
     cartoes: [{ titulo: "Página", campos: [
       { k: "titulo", t: "texto", rot: "Título", largo: true },
       { k: "conteudo", t: "rico", rot: "Conteúdo" },
       { k: "imagem", t: "imagem", rot: "Imagem de capa (opcional)", largo: true },
-      { k: "noticia", t: "check", rot: "Mostrar em “Novidades” na página inicial" },
       { k: "formulario", t: "check", rot: "Mostrar formulário de contato (envia pelo WhatsApp)" }
     ]}]
   }

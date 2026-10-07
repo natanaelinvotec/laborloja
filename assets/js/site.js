@@ -189,7 +189,7 @@ function aplicarTema() {
     r.setProperty("--fonte-titulos", `"${g.fonteTitulos}",system-ui,sans-serif`);
     r.setProperty("--fonte-texto", `"${g.fonteTexto}",system-ui,sans-serif`);
     const l = document.createElement("link"); l.rel = "stylesheet";
-    l.href = "https://fonts.googleapis.com/css2?" + fontes.map((f) => "family=" + encodeURIComponent(f) + ":wght@400;500;600;700").join("&") + "&display=swap";
+    l.href = "https://fonts.googleapis.com/css2?" + fontes.map((f) => "family=" + encodeURIComponent(f) + ":wght@400;500;600;700;800").join("&") + "&display=swap";
     document.head.append(l);
   }
   if (g.favicon || g.logo) { const f = document.createElement("link"); f.rel = "icon"; f.href = g.favicon || g.logo; document.head.append(f); }

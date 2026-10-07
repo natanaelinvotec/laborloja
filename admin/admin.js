@@ -1,5 +1,5 @@
 // Painel administrativo LaborLoja — tudo que aparece no site é editável aqui.
-import { firebase, carregarDados, carregarSeed, limparDemo, salvarTudo, enviarArquivoFirestore, ativarArquivos } from "../assets/js/data.js";
+import { firebase, carregarDados, carregarSeed, limparDemo, salvarTudo, enviarArquivoFirestore, ativarArquivos, urlDoArquivo } from "../assets/js/data.js";
 import { firebaseAtivo, emailsAdmin } from "../assets/js/firebase-config.js";
 import { esquemas } from "./esquemas.js";
 
@@ -53,6 +53,50 @@ function escolherArquivo(aceita, multiplo = false) {
   });
 }
 
+/* ======================= Remover fundo de imagem ======================= */
+// Apaga a cor de fundo a partir das bordas (preenchimento por inundação), com borda suavizada.
+// Funciona bem para logos e fotos de produto com fundo liso (branco, preto ou cor única).
+async function removerFundo(origem) {
+  let url = origem;
+  if (url.startsWith("arquivo:")) url = await urlDoArquivo(url);
+  else if (url.startsWith("uploads/")) url = "../" + url;
+  const blob = await fetch(url).then((r) => { if (!r.ok) throw new Error("imagem inacessível"); return r.blob(); });
+  const bmp = await createImageBitmap(blob);
+  const escala = Math.min(1, 1800 / Math.max(bmp.width, bmp.height));
+  const w = Math.round(bmp.width * escala), h = Math.round(bmp.height * escala);
+  const c = document.createElement("canvas"); c.width = w; c.height = h;
+  const ctx = c.getContext("2d", { willReadFrequently: true }); ctx.drawImage(bmp, 0, 0, w, h);
+  const img = ctx.getImageData(0, 0, w, h), px = img.data;
+  // cor de fundo = média dos 4 cantos
+  const cantos = [[0, 0], [w - 1, 0], [0, h - 1], [w - 1, h - 1]].map(([x, y]) => (y * w + x) * 4);
+  const fundo = [0, 1, 2].map((k) => cantos.reduce((a, i) => a + px[i + k], 0) / 4);
+  const dist = (i) => Math.hypot(px[i] - fundo[0], px[i + 1] - fundo[1], px[i + 2] - fundo[2]);
+  const LIM = 48, SUAVE = 90;               // até 48 = fundo; até 90 = transição suave
+  const visto = new Uint8Array(w * h), fila = [];
+  for (let x = 0; x < w; x++) fila.push(x, (h - 1) * w + x);
+  for (let y = 0; y < h; y++) fila.push(y * w, y * w + w - 1);
+  while (fila.length) {
+    const p = fila.pop();
+    if (visto[p]) continue; visto[p] = 1;
+    const i = p * 4, d = dist(i);
+    if (d > SUAVE) continue;
+    px[i + 3] = d <= LIM ? 0 : Math.round(px[i + 3] * (d - LIM) / (SUAVE - LIM));
+    if (d > LIM) continue;                  // não avança além da borda
+    const x = p % w, y = (p / w) | 0;
+    if (x > 0) fila.push(p - 1); if (x < w - 1) fila.push(p + 1);
+    if (y > 0) fila.push(p - w); if (y < h - 1) fila.push(p + w);
+  }
+  ctx.putImageData(img, 0, 0);
+  // recorta a sobra transparente
+  let x0 = w, y0 = h, x1 = 0, y1 = 0;
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) if (px[(y * w + x) * 4 + 3] > 8) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+  if (x1 <= x0 || y1 <= y0) throw new Error("a imagem ficou vazia — o fundo não é liso");
+  const out = document.createElement("canvas"); out.width = x1 - x0 + 1; out.height = y1 - y0 + 1;
+  out.getContext("2d").drawImage(c, x0, y0, out.width, out.height, 0, 0, out.width, out.height);
+  const png = await new Promise((r) => out.toBlob(r, "image/png"));
+  return new File([png], "sem-fundo.png", { type: "image/png" });
+}
+
 /* ======================= Construtor de campos ======================= */
 // Cada definição: { k: "caminho.no.objeto", t: tipo, rot: "Rótulo", dica, largo, ... }
 function sugestoesLinks() {
@@ -98,12 +142,19 @@ function campo(def, obj, aoMudar) {
     case "imagem": case "arquivo": {
       const ehImg = def.t === "imagem";
       el = h(`<div class="imagem-campo">${ehImg ? '<div class="prev">sem imagem</div>' : ""}<div class="acoes">
-        <div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn sec peq" data-env>${ehImg ? "📷 Enviar imagem" : "📄 Enviar arquivo (PDF)"}</button><button type="button" class="btn perigo peq" data-rem>Remover</button></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn sec peq" data-env>${ehImg ? "📷 Enviar imagem" : "📄 Enviar arquivo (PDF)"}</button>${ehImg ? '<button type="button" class="btn sec peq" data-fundo title="Deixa o fundo (branco, preto ou de cor única) transparente">✂️ Remover fundo</button>' : ""}<button type="button" class="btn perigo peq" data-rem>Remover</button></div>
         <input type="url" class="input" placeholder="…ou cole o endereço (URL)"></div></div>`);
       const inp = $("input", el), prev = $(".prev", el);
       const mostra = (v) => { inp.value = v || ""; if (prev) { prev.style.backgroundImage = v ? `url("${v}")` : ""; prev.textContent = v ? "" : "sem imagem"; } };
       mostra(valor); inp.oninput = () => { mostra(inp.value); muda(inp.value); };
       $("[data-rem]", el).onclick = () => { mostra(""); muda(""); };
+      $("[data-fundo]", el)?.addEventListener("click", async (e) => {
+        if (!inp.value) return toast("Escolha uma imagem primeiro.", "erro");
+        e.target.disabled = true; e.target.textContent = "Processando…";
+        try { const url = await enviarArquivo(await removerFundo(inp.value)); mostra(url); muda(url); toast("Fundo removido ✔", "ok"); }
+        catch (err) { console.error(err); toast("Não foi possível remover o fundo: " + err.message, "erro"); }
+        e.target.disabled = false; e.target.textContent = "✂️ Remover fundo";
+      });
       $("[data-env]", el).onclick = async (e) => {
         const [f] = await escolherArquivo(ehImg ? "image/*" : "application/pdf,image/*"); if (!f) return;
         e.target.disabled = true; e.target.textContent = "Enviando…";
@@ -554,10 +605,21 @@ function telaPrimeiroAcesso(erro = "") {
   };
 }
 
+/** Converte formatos antigos para os atuais (ex.: banner único → lista de slides). */
+function migrarConteudo(D) {
+  const h = D.site?.home; if (!h) return;
+  if (!Array.isArray(h.slides) || !h.slides.length) {
+    if (h.hero) h.slides = [{ ativo: true, ...h.hero }];
+    if (h.hero?.bannerLateral && !h.destaqueLateral) h.destaqueLateral = { imagem: h.hero.bannerLateral, link: h.hero.bannerLateralLink || "whatsapp" };
+  }
+  if (h.tituloParceiros === undefined) h.tituloParceiros = "Nossos Parceiros";
+}
+
 (async function iniciar() {
   ativarArquivos(document.body);
   try {
     D = await carregarDados();
+    migrarConteudo(D);
     window.__categoriasOpcoes = () => [["", "— escolha —"], ...D.categorias.map((c) => [c.id, (c.pai ? "↳ " : "") + c.nome])];
     FB = firebaseAtivo ? await firebase() : null;
     if (!FB) { montarLayout(); return; }
