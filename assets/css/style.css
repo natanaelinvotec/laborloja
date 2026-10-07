@@ -440,6 +440,7 @@ button,input,select,textarea{font:inherit}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .efeitos .revelar{opacity:1;transform:none}
+  .slider-pontos button.ativo span{animation-duration:var(--intervalo,7s)!important}
 }
 
 /* ---- Ajustes para telas médias (notebooks pequenos / janelas estreitas) ---- */

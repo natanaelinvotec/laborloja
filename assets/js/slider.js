@@ -1,5 +1,5 @@
 // Slider do banner principal: troca automática com barra de progresso,
-// setas, pontos, arrastar com o dedo e pausa ao passar o mouse.
+// setas, pontos e arrastar com o dedo. Gira sozinho o tempo todo.
 const reduzir = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 export function ativarSlider(raiz) {
@@ -27,19 +27,15 @@ export function ativarSlider(raiz) {
   };
   const agendar = () => {
     clearTimeout(timer);
-    if (slides.length > 1 && !pausado && !reduzir) timer = setTimeout(() => mostrar(atual + 1), intervalo);
+    if (slides.length > 1 && !pausado) timer = setTimeout(() => mostrar(atual + 1), intervalo);
   };
 
   raiz.querySelector(".ant")?.addEventListener("click", () => mostrar(atual - 1));
   raiz.querySelector(".prox")?.addEventListener("click", () => mostrar(atual + 1));
   pontos.forEach((p) => p.addEventListener("click", () => mostrar(+p.dataset.ir)));
 
-  // pausa enquanto o mouse está em cima (ou o foco do teclado)
+  // gira sozinho sempre; só pausa quando a aba do navegador está escondida
   const pausar = (v) => { pausado = v; raiz.classList.toggle("pausado", v); agendar(); };
-  raiz.addEventListener("mouseenter", () => pausar(true));
-  raiz.addEventListener("mouseleave", () => pausar(false));
-  raiz.addEventListener("focusin", () => pausar(true));
-  raiz.addEventListener("focusout", () => pausar(false));
   document.addEventListener("visibilitychange", () => pausar(document.hidden));
 
   // arrastar / deslizar
