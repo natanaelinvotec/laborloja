@@ -99,7 +99,8 @@ iniciarPagina((main, D) => {
   <section class="secao"><div class="container">
     ${h.tituloBanners || h.linkBannersTexto ? `<div class="secao-titulo">${h.tituloBanners ? `<h2>${esc(h.tituloBanners)}</h2>` : "<span></span>"}${h.linkBannersTexto ? `<a class="link-seta" href="${esc(h.linkBanners)}">${esc(h.linkBannersTexto)} <span aria-hidden="true">→</span></a>` : ""}</div>` : ""}
     <div class="grade-banners">${(h.banners || []).map((b) => `
-      <a class="banner" href="${esc(resolverLink(b.botaoLink, "Olá! Gostaria de saber mais sobre: " + b.titulo))}"${alvo(b.botaoLink)} style="background-image:url('${esc(b.imagem)}')">
+      <a class="banner banner-v3" href="${esc(resolverLink(b.botaoLink, "Olá! Gostaria de saber mais sobre: " + b.titulo))}"${alvo(b.botaoLink)}>
+        ${b.imagem ? `<img class="banner-img" src="${esc(b.imagem)}" alt="" loading="lazy">` : ""}
         <span class="banner-txt"><h3>${esc(b.titulo)}</h3><p>${esc(b.texto)}</p>
         <span class="btn ${b.botaoClaro ? "claro" : ""}">${esc(b.botaoTexto)}</span></span></a>`).join("")}</div>
     ${folders.length ? `<div class="carrossel" style="margin-top:50px"><div class="carrossel-trilho">${folders.map(cartaoProduto).join("")}</div><div class="pontos"></div></div>` : ""}

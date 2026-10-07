@@ -10,7 +10,7 @@ const ICONE = {
   busca: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
   coracao: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.6-9.5-9.3C1.2 8.4 3.4 5 6.9 5c2 0 3.5 1.1 5.1 3 1.6-1.9 3.1-3 5.1-3 3.5 0 5.7 3.4 4.4 6.7C19.5 16.4 12 21 12 21z"/></svg>',
   carrinho: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 4h2l2.4 11h11l2-8H6.2"/><circle cx="9" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg>',
-  presente: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="8" width="18" height="4"/><path d="M5 12v9h14v-9M12 8v13M12 8S10 3 7.5 4.5 9 8 12 8zm0 0s2-5 4.5-3.5S15 8 12 8z"/></svg>',
+  presente: '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4"/><path d="M12 13v4M9 21h6M10 17h4v4h-4z"/></svg>',
   whats: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.5-.3z"/></svg>',
   facebook: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8V6c0-.9.6-1 1-1h3V1h-4C10.1 1 9 3.9 9 5.8V8H6v4h3v11h5V12h3.5l.5-4z"/></svg>',
   instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg>'
@@ -161,9 +161,15 @@ function cabecalho() {
 }
 function rodape() {
   const r = D.site.rodape, c = D.site.contato, g = D.site.geral;
-  const redes = [c.facebook && `<a href="${esc(c.facebook)}" target="_blank" rel="noopener" aria-label="Facebook">${ICONE.facebook}</a>`, c.instagram && `<a href="${esc(c.instagram)}" target="_blank" rel="noopener" aria-label="Instagram">${ICONE.instagram}</a>`].filter(Boolean).join("");
+  // Cartões das redes: ícone + nome + @perfil (tirado do próprio link) + chamada para seguir
+  const perfil = (url) => { try { const p = new URL(url).pathname.split("/").filter(Boolean)[0]; return p ? "@" + p : ""; } catch { return ""; } };
+  const rede = (url, nome, icone, classe) => url ? `<a class="rede-cartao ${classe}" href="${esc(url)}" target="_blank" rel="noopener">
+      <span class="rede-icone">${icone}</span>
+      <span class="rede-txt"><b>${nome}</b><small>${esc(perfil(url))}</small></span>
+      <span class="rede-seguir">Seguir <span aria-hidden="true">→</span></span></a>` : "";
+  const redes = rede(c.instagram, "Instagram", ICONE.instagram, "insta") + rede(c.facebook, "Facebook", ICONE.facebook, "face");
   return `<section class="faixa"><div class="container">
-      <div><h3>${esc(r.tituloRedes)}</h3><div class="redes">${redes}</div></div>
+      <div><h3>${esc(r.tituloRedes)}</h3><p>${esc(r.textoRedes || "Acompanhe lançamentos, novidades e condições especiais.")}</p><div class="redes">${redes}</div></div>
       <div><h3>${esc(r.tituloNovidades)}</h3><p>${esc(r.textoNovidades || "")}</p>
         <form class="form-news" data-news><input type="email" required placeholder="Seu e-mail" aria-label="Seu e-mail"><button class="btn escuro">Assinar</button></form></div>
     </div></section>
