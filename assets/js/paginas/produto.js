@@ -1,4 +1,4 @@
-import { iniciarPagina, esc, qs, produto, nomeCats, botaoCoracao, naLista, alternarLista, linkWhats, produtosAtivos, cartaoProduto } from "../site.js";
+import { iniciarPagina, esc, qs, produto, nomeCats, botaoCoracao, naLista, alternarLista, linkWhats, produtosAtivos, cartaoProduto } from "../site.js?v=20261019a";
 iniciarPagina((main, D) => {
   const p = produto(qs("p"));
   if (!p || p.ativo === false) { main.innerHTML = '<div class="carregando">Produto não encontrado. <a class="btn" href="produtos.html">Ver produtos</a></div>'; return; }

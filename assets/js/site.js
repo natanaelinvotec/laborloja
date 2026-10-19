@@ -1,7 +1,7 @@
 // Núcleo do site público: monta cabeçalho, rodapé, cartões e a lista de orçamento.
-import { carregarDados, ativarArquivos } from "./data.js";
-import { iconeSvg } from "./icones.js";
-import { ativarEfeitos } from "./efeitos.js";
+import { carregarDados, ativarArquivos } from "./data.js?v=20261019a";
+import { iconeSvg } from "./icones.js?v=20261019a";
+import { ativarEfeitos } from "./efeitos.js?v=20261019a";
 
 export const esc = (s = "") => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 export const qs = (n) => new URLSearchParams(location.search).get(n);
@@ -248,13 +248,29 @@ export async function iniciarPagina(render) {
 export function ativarCarrossel(el) {
   const trilho = el.querySelector(".carrossel-trilho"), pontos = el.querySelector(".pontos");
   if (!trilho || !pontos) return;
-  const paginas = () => Math.max(1, Math.round(trilho.scrollWidth / trilho.clientWidth));
+  // setas + barra de progresso (mostra que dá para rolar até o fim da sequência)
+  if (!el.querySelector(".carrossel-nav")) {
+    el.insertAdjacentHTML("beforeend", `<div class="carrossel-nav">
+      <div class="carrossel-barra"><span></span></div>
+      <button class="carrossel-seta" data-dir="-1" aria-label="Anterior">‹</button>
+      <button class="carrossel-seta" data-dir="1" aria-label="Próximo">›</button></div>`);
+  }
+  const nav = el.querySelector(".carrossel-nav"), barra = nav.querySelector(".carrossel-barra span");
+  const [ant, prox] = nav.querySelectorAll(".carrossel-seta");
+  const passo = () => { const c = trilho.firstElementChild; return c ? c.getBoundingClientRect().width + parseFloat(getComputedStyle(trilho).columnGap || 0) : trilho.clientWidth; };
+  nav.addEventListener("click", (e) => { const b = e.target.closest("[data-dir]"); if (b) trilho.scrollBy({ left: b.dataset.dir * passo() * Math.max(1, Math.floor(trilho.clientWidth / passo()) - 1), behavior: "smooth" }); });
   const desenhar = () => {
-    const n = paginas(), atual = Math.round(trilho.scrollLeft / trilho.clientWidth);
-    pontos.innerHTML = n < 2 ? "" : Array.from({ length: n }, (_, i) => `<button aria-label="Página ${i + 1}" class="${i === atual ? "ativo" : ""}" data-i="${i}"></button>`).join("");
+    const max = trilho.scrollWidth - trilho.clientWidth;
+    el.classList.toggle("sem-rolagem", max < 4);
+    const vis = Math.min(1, Math.max(0.12, trilho.clientWidth / Math.max(1, trilho.scrollWidth)));
+    barra.style.width = vis * 100 + "%";
+    barra.style.transform = `translateX(${max > 0 ? (trilho.scrollLeft / max) * ((1 - vis) / vis) * 100 : 0}%)`;
+    ant.disabled = trilho.scrollLeft < 4; prox.disabled = trilho.scrollLeft > max - 4;
+    pontos.innerHTML = "";
   };
-  pontos.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) trilho.scrollTo({ left: b.dataset.i * trilho.clientWidth, behavior: "smooth" }); });
-  trilho.addEventListener("scroll", () => { clearTimeout(trilho._t); trilho._t = setTimeout(desenhar, 80); }, { passive: true });
+  trilho.addEventListener("scroll", () => requestAnimationFrame(desenhar), { passive: true });
   addEventListener("resize", desenhar);
+  new MutationObserver(() => requestAnimationFrame(desenhar)).observe(trilho, { childList: true });
+  trilho.querySelectorAll("img").forEach((i) => i.addEventListener("load", desenhar, { once: true }));
   desenhar();
 }

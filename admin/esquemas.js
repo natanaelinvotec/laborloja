@@ -1,7 +1,7 @@
 // Definição dos formulários do painel. Para criar um novo campo editável,
 // basta acrescentar uma linha aqui — o painel desenha o formulário sozinho.
 // Tipos: texto, area, linhas, numero, check, cor, select, link, imagem, arquivo, galeria, rico, categorias, produtos, lista
-import { opcoesIcones } from "../assets/js/icones.js";
+import { opcoesIcones } from "../assets/js/icones.js?v=20261019a";
 const esc = (s = "") => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const FONTES = ["Plus Jakarta Sans", "DM Sans", "Manrope", "Rubik", "Source Sans Pro", "Montserrat", "Poppins", "Open Sans", "Roboto", "Lato", "Inter", "Nunito"].map((f) => [f, f]);
 const botao = (k = "") => [
@@ -161,6 +161,7 @@ export const esquemas = {
       ]},
       { titulo: "Faixa azul", campos: [
         { k: "rodape.tituloRedes", t: "texto", rot: "Título das redes sociais" },
+        { k: "rodape.textoRedes", t: "texto", rot: "Frase abaixo do título das redes" },
         { k: "rodape.tituloNovidades", t: "texto", rot: "Título de novidades" },
         { k: "rodape.textoNovidades", t: "area", rot: "Texto de novidades" }
       ]},

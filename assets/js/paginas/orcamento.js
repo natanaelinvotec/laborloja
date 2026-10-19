@@ -1,4 +1,4 @@
-import { iniciarPagina, esc, lerLista, produto, alterarQtd, alternarLista, limparLista, montarMensagemOrcamento, linkWhats } from "../site.js";
+import { iniciarPagina, esc, lerLista, produto, alterarQtd, alternarLista, limparLista, montarMensagemOrcamento, linkWhats } from "../site.js?v=20261019a";
 iniciarPagina((main, D) => {
   main.innerHTML = `<div class="titulo-pagina"><div class="container"><h1>Lista de orçamento</h1><div class="migalhas"><a href="index.html">Home</a> / Orçamento</div></div></div>
     <div class="container pagina-conteudo" data-box></div>`;

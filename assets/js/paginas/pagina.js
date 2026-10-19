@@ -1,4 +1,4 @@
-import { iniciarPagina, esc, qs, linkWhats } from "../site.js";
+import { iniciarPagina, esc, qs, linkWhats } from "../site.js?v=20261019a";
 iniciarPagina((main, D) => {
   const pg = D.paginas.find((x) => x.id === qs("p"));
   if (!pg) { main.innerHTML = '<div class="carregando">Página não encontrada.</div>'; return; }

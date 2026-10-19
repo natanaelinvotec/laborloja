@@ -1,7 +1,7 @@
 // Painel administrativo LaborLoja — tudo que aparece no site é editável aqui.
-import { firebase, carregarDados, carregarSeed, limparDemo, salvarTudo, enviarArquivoFirestore, ativarArquivos, urlDoArquivo } from "../assets/js/data.js";
-import { firebaseAtivo, emailsAdmin } from "../assets/js/firebase-config.js";
-import { esquemas } from "./esquemas.js";
+import { firebase, carregarDados, carregarSeed, limparDemo, salvarTudo, enviarArquivoFirestore, ativarArquivos, urlDoArquivo } from "../assets/js/data.js?v=20261019a";
+import { firebaseAtivo, emailsAdmin } from "../assets/js/firebase-config.js?v=20261019a";
+import { esquemas } from "./esquemas.js?v=20261019a";
 
 const $ = (s, el = document) => el.querySelector(s);
 const esc = (s = "") => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));

@@ -3,7 +3,7 @@
 // - Arquivos (fotos/PDFs enviados pelo painel): guardados no próprio Firestore em
 //   partes de ~700 KB (arquivos/{id}/partes/000…), endereçados como "arquivo:{id}".
 //   Assim tudo funciona no plano gratuito (o Firebase Storage exige plano pago).
-import { firebaseConfig, firebaseAtivo } from "./firebase-config.js";
+import { firebaseConfig, firebaseAtivo } from "./firebase-config.js?v=20261019a";
 
 const SDK = "https://www.gstatic.com/firebasejs/10.12.4";
 const CHAVE_DEMO = "laborloja-demo-conteudo";
@@ -134,9 +134,9 @@ export function ativarArquivos(raiz = document.body) {
   // dentro do painel (/admin/) é preciso subir um nível para enxergá-los.
   const noAdmin = location.pathname.includes("/admin/");
   const corrigirRelativo = (el) => {
-    for (const attr of ["src", "href"]) { const v = el.getAttribute(attr); if (v?.startsWith("uploads/")) el.setAttribute(attr, "../" + v); }
+    for (const attr of ["src", "href"]) { const v = el.getAttribute(attr); if (/^(uploads|assets\/img)\//.test(v || "")) el.setAttribute(attr, "../" + v); }
     const st = el.getAttribute("style");
-    if (st && /url\(["']?uploads\//.test(st)) el.setAttribute("style", st.replace(/url\((["']?)uploads\//g, "url($1../uploads/"));
+    if (st && /url\(["']?(uploads|assets\/img)\//.test(st)) el.setAttribute("style", st.replace(/url\((["']?)(uploads|assets\/img)\//g, "url($1../$2/"));
   };
   const tratar = (el) => {
     if (el.nodeType !== 1) return;
@@ -150,7 +150,7 @@ export function ativarArquivos(raiz = document.body) {
       for (const ref of st.match(re) || []) urlDoArquivo(ref).then((u) => { el.setAttribute("style", el.getAttribute("style").split(ref).join(u)); }).catch(console.warn);
     }
   };
-  const varrer = (n) => { tratar(n); n.querySelectorAll?.("[src^='arquivo:'],[href^='arquivo:'],[style*='arquivo:'],[src^='uploads/'],[href^='uploads/'],[style*='uploads/']").forEach(tratar); };
+  const varrer = (n) => { tratar(n); n.querySelectorAll?.("[src^='arquivo:'],[href^='arquivo:'],[style*='arquivo:'],[src^='uploads/'],[href^='uploads/'],[style*='uploads/'],[src^='assets/img/'],[style*='assets/img/']").forEach(tratar); };
   varrer(raiz);
   new MutationObserver((ms) => ms.forEach((m) => (m.type === "attributes" ? tratar(m.target) : m.addedNodes.forEach(varrer))))
     .observe(raiz, { childList: true, subtree: true, attributes: true, attributeFilter: ["src", "href", "style"] });

@@ -118,6 +118,10 @@
    "tituloAbas": "Produtos",
    "abas": [
     {
+     "texto": "Veterinário",
+     "categoria": "diagnostico-veterinario"
+    },
+    {
      "texto": "ECO Brasil",
      "categoria": "point-of-care"
     },
@@ -128,10 +132,6 @@
     {
      "texto": "Alérgenos",
      "categoria": "alergia-intolorencia"
-    },
-    {
-     "texto": "Veterinário",
-     "categoria": "diagnostico-veterinario"
     }
    ],
    "listas": [

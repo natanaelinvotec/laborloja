@@ -1,4 +1,4 @@
-import { iniciarPagina, esc, qs, categoria, filhosDe, produtosAtivos, produtosDaCategoria, cartaoProduto } from "../site.js";
+import { iniciarPagina, esc, qs, categoria, filhosDe, produtosAtivos, produtosDaCategoria, cartaoProduto } from "../site.js?v=20261019a";
 
 const normalizar = (s = "") => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 

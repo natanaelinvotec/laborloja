@@ -1,5 +1,5 @@
-import { iniciarPagina, esc, resolverLink, produto, produtosAtivos, produtosDaCategoria, cartaoProduto, linhaProduto, ativarCarrossel } from "../site.js";
-import { ativarSlider } from "../slider.js";
+import { iniciarPagina, esc, resolverLink, produto, produtosAtivos, produtosDaCategoria, cartaoProduto, linhaProduto, ativarCarrossel } from "../site.js?v=20261019a";
+import { ativarSlider } from "../slider.js?v=20261019a";
 
 const ICO_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>';
 const ICO_ALERTA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3l9.5 17h-19z"/><path d="M12 10v4.5M12 17.6v.1"/></svg>';
@@ -82,13 +82,13 @@ iniciarPagina((main, D) => {
     ${lateral}
   </div></section>` : ""}
 
-  <section class="secao" style="padding-top:20px"><div class="container">
+  <section class="secao secao-seg" style="padding-top:20px"><div class="container">
     ${h.tituloCategorias ? `<div class="secao-titulo"><h2>${esc(h.tituloCategorias)}</h2></div>` : ""}
-    <div class="grade-categorias">${catsHome.map((c) => `<a class="cartao-cat" href="produtos.html?cat=${c.id}"><img loading="lazy" src="${esc(c.imagem)}" alt=""><span>${esc(c.nome)}</span></a>`).join("")}</div>
+    <div class="carrossel carrossel-seg"><div class="carrossel-trilho">${catsHome.map((c) => `<a class="cartao-cat" href="produtos.html?cat=${c.id}"><span class="cat-img"><img loading="lazy" src="${esc(c.imagem)}" alt=""></span><span class="cat-nome">${esc(c.nome)}</span><span class="cat-ir" aria-hidden="true">Ver produtos →</span></a>`).join("")}</div><div class="pontos"></div></div>
   </div></section>
 
-  <section class="secao cinza"><div class="container">
-    <div class="grade-promos">${(h.promos || []).map((p) => `
+  <section class="secao secao-promos"><div class="container">
+    <div class="grade-promos" data-qtd="${(h.promos || []).length}">${(h.promos || []).map((p) => `
       <div class="promo"><div class="promo-texto">${p.selo ? `<span class="promo-selo">${esc(p.selo)}</span>` : ""}<h3>${esc(p.titulo)}</h3><p>${esc(p.texto)}</p>
         <a class="btn" href="${esc(resolverLink(p.botaoLink, "Olá! Gostaria de saber mais sobre: " + p.titulo))}"${alvo(p.botaoLink)}>${esc(p.botaoTexto)}</a></div>
         ${p.imagem ? `<div class="promo-vitrine"><img loading="lazy" src="${esc(p.imagem)}" alt="${esc(p.titulo)}"></div>` : ""}</div>`).join("")}</div>

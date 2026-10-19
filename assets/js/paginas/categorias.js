@@ -1,4 +1,4 @@
-import { iniciarPagina, esc, produtosDaCategoria } from "../site.js";
+import { iniciarPagina, esc, produtosDaCategoria } from "../site.js?v=20261019a";
 iniciarPagina((main, D) => {
   const cats = D.categorias.filter((c) => !c.pai);
   main.innerHTML = `<div class="titulo-pagina"><div class="container"><h1>Categorias</h1><div class="migalhas"><a href="index.html">Home</a> / Categorias</div></div></div>
